@@ -3,5 +3,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 1rem;
-    grid-gap: 2rem
+    grid-gap: 2rem;
+    border: 1px solid rgba(128, 128, 128, 0.161);
 }

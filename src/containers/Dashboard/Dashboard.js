@@ -14,10 +14,10 @@ const Dashboard = () => {
 
     const changeSelected = (id) => {
         setSelected(id)
-        fetchOne(id)
+        fetchById(id)
     }
 
-    const fetchOne = async (id) => {
+    const fetchById = async (id) => {
         const { data } = await axios
             .get(`https://623c441d7efb5abea67da60b.mockapi.io/api/v1/products/${id}`);
         setDetail(data)
@@ -39,7 +39,7 @@ const Dashboard = () => {
             .then(() => {
                 fetchData();
                 if (selected) {
-                    fetchOne(selected)
+                    fetchById(selected)
                 }
             })
             .catch(e => alert("Failure!"))
