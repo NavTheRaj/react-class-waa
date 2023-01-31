@@ -1,0 +1,10 @@
+.product-container {
+    /* padding: 0.5rem; */
+    border: 2px solid rgb(128, 128, 128, 0.15);
+    background-color: rgba(247, 167, 239, 0.469);
+    cursor: pointer;
+}
+
+.product-container:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}

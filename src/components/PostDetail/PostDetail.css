@@ -1,0 +1,19 @@
+.post-detail-container {
+    background-color: rgba(247, 167, 239, 0.469);
+    padding: 0.2rem 2rem 2rem 2rem;
+    border: 1px solid rgba(128, 128, 128, 0.644);
+    margin-bottom: 1rem;
+}
+
+.post-detail-action {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.post-delete {
+    background-color: brown !important;
+}
+
+.post-edit {
+    background-color: rgb(102, 116, 52) !important;
+}
