@@ -12,3 +12,12 @@
 .btn-simple {
     margin-left: 1.5rem;
 }
+
+.title-id-input {
+    width: 4rem;
+}
+
+.title-input {
+    width: 20rem;
+    height: 2rem;
+}
