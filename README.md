@@ -44,3 +44,11 @@ PUT https://623c441d7efb5abea67da60b.mockapi.io/api/v1/products/{id}
 ```
 DELETE https://623c441d7efb5abea67da60b.mockapi.io/api/v1/products/{id}
 ```
+
+#### Updates
+Add, Edit and Delete Functionalities
+
+Test it on live server 
+```
+https://postitout.netlify.app/
+```
