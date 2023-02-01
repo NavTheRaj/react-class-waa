@@ -21,7 +21,7 @@ const Form = (props) => {
     }, [props.detailUpdateState])
 
 
-    const TitleElement = () => props.detailUpdateState == undefined ?
+    const TitleElement = () => props.detailUpdateState === undefined ?
         <h2> Edit Post By Id</h2> : <h2>Edit Selected Post</h2>
 
     return (
