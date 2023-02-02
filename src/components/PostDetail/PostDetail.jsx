@@ -37,6 +37,7 @@ const PostDetail = ({ deletePostById, setDetailUpdateState }) => {
                 >Delete</button>
             </div>
             <div>
+                <h4>Comments</h4>
                 <CommentArea />
             </div>
         </div>
