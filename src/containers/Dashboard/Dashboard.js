@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import AddPost from '../../components/AddPost/AddPost';
 import Form from '../../components/Form/Form';
 import PostDetail from '../../components/PostDetail/PostDetail';
 import Posts from '../../pages/Posts';
 import "./Dashboard.css"
+
+
+export const PostContext = createContext()
 
 const Dashboard = () => {
 
@@ -72,21 +75,24 @@ const Dashboard = () => {
 
 
     return (
-        <div className='dashboard-container'>
-            <h2>Products</h2>
-            <Posts postList={postList} changeSelected={changeSelected} />
-            <AddPost addPost={addPost} />
-            <Form
-                updatePost={updatePost}
-                detailUpdateState={detailUpdateState}
-            />
-            {selected > 0 ? <PostDetail
-                data={detail}
-                updatePost={updatePost}
-                setDetailUpdateState={setDetailUpdateState}
-                deletePostById={deletePostById}
-            /> : null}
-        </div>
+        <PostContext.Provider value={detail} >
+            <div className='dashboard-container'>
+                <AddPost addPost={addPost} />
+                <h2>Posts</h2>
+                <Posts postList={postList} changeSelected={changeSelected} />
+                {selected > 0 && detail && <PostDetail
+                    updatePost={updatePost}
+                    setDetailUpdateState={setDetailUpdateState}
+                    deletePostById={deletePostById}
+                />}
+                <Form
+                    updatePost={updatePost}
+                    detailUpdateState={detailUpdateState}
+                />
+
+
+            </div>
+        </PostContext.Provider >
     )
 
 }

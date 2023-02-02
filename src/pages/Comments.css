@@ -1,0 +1,11 @@
+.comment-container {
+    /* display: flex; */
+    background-color: rgba(247, 167, 239, 0.814);
+    border-radius: 0.1rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(128, 128, 128, 0.415);
+    margin: 1rem;
+    overflow-y: scroll;
+    height: 3rem;
+    justify-content: flex-end;
+}

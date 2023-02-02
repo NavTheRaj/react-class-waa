@@ -6,7 +6,9 @@ const Posts = ({ postList, changeSelected }) => {
 
     const posts = postList
         .map(post =>
-            <Post id={post.id}
+            <Post
+                key={post.id}
+                id={post.id}
                 title={post.title}
                 changeSelected={changeSelected}
             />)

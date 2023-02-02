@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "./AddPost.css"
 
 
 const AddPost = ({ addPost }) => {
 
     const [title, setTitle] = useState()
+    const titleRef = useRef()
+    const descRef = useRef()
+    const priceRef = useRef()
     const [description, setDescription] = useState()
     const [price, setPrice] = useState()
 
+
+    useEffect(() => {
+        titleRef.current = title
+        descRef.current = description
+        priceRef.current = price
+    }, [title, description, price])
+
     const handleChange = (e) => {
         e.preventDefault()
-        addPost(title, description, price)
+        console.log(titleRef)
+        addPost(titleRef.current,
+            descRef.current,
+            priceRef.current)
         setTitle('')
         setDescription('')
         setPrice('')
@@ -27,6 +40,7 @@ const AddPost = ({ addPost }) => {
                         placeholder='Title Name'
                         required={true}
                         value={title}
+                        ref={titleRef}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
@@ -37,6 +51,7 @@ const AddPost = ({ addPost }) => {
                         placeholder='Title Description'
                         required={true}
                         value={description}
+                        ref={descRef}
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
@@ -47,6 +62,7 @@ const AddPost = ({ addPost }) => {
                         placeholder='Price'
                         required={true}
                         value={price}
+                        ref={priceRef}
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </div>

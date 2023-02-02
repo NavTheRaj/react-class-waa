@@ -38,6 +38,7 @@ const Form = (props) => {
                     min={1}
                     max={8}
                     value={titleId}
+                    disabled={props.detailUpdateState === undefined ? false : true}
                 />
                 <textarea
                     className='title-input'
