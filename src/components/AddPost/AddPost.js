@@ -1,47 +1,49 @@
+import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
+import { redirect, useNavigate } from 'react-router'
 import "./AddPost.css"
 
 
-const AddPost = ({ addPost }) => {
+const AddPost = () => {
 
-    const [title, setTitle] = useState()
     const titleRef = useRef()
     const descRef = useRef()
     const priceRef = useRef()
-    const [description, setDescription] = useState()
-    const [price, setPrice] = useState()
+
+    const navigate = useNavigate()
 
 
-    useEffect(() => {
-        titleRef.current = title
-        descRef.current = description
-        priceRef.current = price
-    }, [title, description, price])
+    const addPost = (title, description, price) => {
+
+        axios
+            .post('https://623c441d7efb5abea67da60b.mockapi.io/api/v1/products',
+                {
+                    title: title,
+                    description: description,
+                    price: price
+                })
+            .then(() => navigate("/posts"))
+            .catch((e) => alert("Failed to add!"))
+    }
 
     const handleChange = (e) => {
         e.preventDefault()
-        console.log(titleRef)
-        addPost(titleRef.current,
-            descRef.current,
-            priceRef.current)
-        setTitle('')
-        setDescription('')
-        setPrice('')
+        addPost(titleRef.current.value,
+            descRef.current.value,
+            priceRef.current.value)
     }
 
     return (
         <>
-            <h2>Add Post</h2>
+
             <div className='form-container'>
-                <div className=''>
+                <div className='form-elements'>
                     <input
                         className=''
                         type='text'
                         placeholder='Title Name'
                         required={true}
-                        value={title}
                         ref={titleRef}
-                        onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
                 <div>
@@ -50,9 +52,7 @@ const AddPost = ({ addPost }) => {
                         type='text'
                         placeholder='Title Description'
                         required={true}
-                        value={description}
                         ref={descRef}
-                        onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
                 <div>
@@ -61,9 +61,7 @@ const AddPost = ({ addPost }) => {
                         type='text'
                         placeholder='Price'
                         required={true}
-                        value={price}
                         ref={priceRef}
-                        onChange={(e) => setPrice(e.target.value)}
                     />
                 </div>
 

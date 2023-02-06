@@ -1,16 +1,18 @@
 import React from 'react'
+import { useParams } from 'react-router'
 import './Post.css'
 
 const Post = (props) => {
 
-    const handleSelected = (e, id) => {
-        e.preventDefault()
-        props.changeSelected(id)
-    }
+    const params = useParams()
 
-    return (<div className='product-container'
-        onClick={e => handleSelected(e, props.id)}>
-        <p>{props.id}</p>
+    // const handleSelected = (e, id) => {
+    //     e.preventDefault()
+    //     props.changeSelected(id)
+    // }
+
+    return (<div className='product-container'>
+        <p>{params.id}</p>
         <p>{props.title}</p>
     </div>)
 }

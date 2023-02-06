@@ -1,8 +1,14 @@
-.postList {
+.post-list {
     /* background-color: rgb(217, 214, 214); */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 1rem;
     grid-gap: 2rem;
     border: 1px solid rgba(128, 128, 128, 0.161);
+    margin-top: 5rem;
+}
+
+.post-list a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.855);
 }

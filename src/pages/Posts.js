@@ -1,19 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Posts.css'
 import Post from '../components/Post/Post';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const Posts = ({ postList, changeSelected }) => {
+const Posts = ({ changeSelected }) => {
+
+    const [postList, setPostList] = useState([])
+
+    const fetchData = async () => {
+        const { data } = await axios
+            .get('https://623c441d7efb5abea67da60b.mockapi.io/api/v1/products');
+        setPostList(data)
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
 
     const posts = postList
         .map(post =>
-            <Post
+            <Link to={`/posts/${post.id}`}
                 key={post.id}
-                id={post.id}
-                title={post.title}
-                changeSelected={changeSelected}
-            />)
+            >
+                <Post
+                    title={post.title}
+                    changeSelected={changeSelected}
+                />
+            </Link>
+        )
 
-    return <div className='postList'
+    return <div className='post-list'
     >{posts}</div>
 
 }

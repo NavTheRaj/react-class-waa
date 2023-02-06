@@ -1,0 +1,11 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    /* margin-top: 3rem; */
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    height: 30%;
+}

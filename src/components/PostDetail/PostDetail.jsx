@@ -1,20 +1,68 @@
-import React, { useContext, useMemo } from 'react'
-import { PostContext } from '../../containers/Dashboard/Dashboard'
+import axios from 'axios'
+import React, { useEffect, useMemo, useState } from 'react'
+import { redirect, useNavigate, useParams } from 'react-router'
 import Comments from '../../pages/Comments'
 import './PostDetail.css'
 
-const PostDetail = ({ deletePostById, setDetailUpdateState }) => {
+const PostDetail = () => {
 
-    const data = useContext(PostContext)
+    const [data, setData] = useState([])
+    const { id } = useParams()
+    const navigate = useNavigate()
 
-    const comments = useMemo(() => data.comments, [data])
+    const deletePostById = (id) => {
+        axios
+            .delete(`https://623c441d7efb5abea67da60b.mockapi.io/api/v1/products/${id}`)
+            .then(() => navigate("/posts"))
+    }
+
+    const fetchOne = (id) => {
+        axios
+            .get(`https://623c441d7efb5abea67da60b.mockapi.io/api/v1/products/${id}`)
+            .then((res) => {
+                setData(res.data)
+            })
+
+    }
+
+
+    // const updatePost = (titleId, title) => {
+    //     axios
+    //         .put(`https://623c441d7efb5abea67da60b.mockapi.io/api/v1/products/${titleId}`,
+    //             {
+    //                 title: title
+    //             })
+    //         .then(() => {
+    //             fetchData();
+    //             if (selected) {
+    //                 fetchOne(selected)
+    //             }
+    //         })
+    //         .catch(e => alert("Failure!"))
+    // }
+
+
+    // const comments = useMemo(() => data.comments, [data])
 
     const CommentArea = () => {
-        return comments && <Comments comments={comments} />
+
+        const comments = data.comments && data.comments
+        console.log(data)
+        if (comments === null || comments.length < 1)
+            return <h4>No Comments</h4>
+        else
+            return <Comments comments={comments} />
+    }
+
+    useEffect(() => {
+        fetchOne(id)
+    }, [id])
+
+    if (!data) {
+        return <p>Loading ...</p>
     }
 
     return <>
-        <h2>Post Detail</h2>
         <div className='post-detail-container'>
             <div>
                 <h3>{data.title}</h3>
@@ -24,12 +72,6 @@ const PostDetail = ({ deletePostById, setDetailUpdateState }) => {
             <div className='post-detail-action'>
                 <button
                     className='post-edit'
-                    onClick={e => setDetailUpdateState(
-                        {
-                            "id": data.id,
-                            "title": data.title
-                        }
-                    )}
                 >Edit</button>
                 <button
                     className='post-delete'
@@ -37,8 +79,7 @@ const PostDetail = ({ deletePostById, setDetailUpdateState }) => {
                 >Delete</button>
             </div>
             <div>
-                <h4>Comments</h4>
-                <CommentArea />
+                {/* <CommentArea /> */}
             </div>
         </div>
     </>

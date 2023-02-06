@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { PostContext } from '../../containers/Dashboard/Dashboard'
 import './Form.css'
 
 const Form = (props) => {
+
+
+    const { postDeleteState } = useContext(PostContext)
 
     const [title, setTitle] = useState('')
     const [titleId, setTitleId] = useState()
@@ -18,6 +22,12 @@ const Form = (props) => {
             setTitle(props.detailUpdateState.title)
             setTitleId(props.detailUpdateState.id)
         }
+
+        if (postDeleteState) {
+            setTitle("")
+            setTitleId("")
+        }
+
     }, [props.detailUpdateState])
 
 
